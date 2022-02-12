@@ -1,0 +1,79 @@
+
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF SCHEMA_ID(N'busy') IS NULL EXEC(N'CREATE SCHEMA [busy];');
+GO
+
+CREATE TABLE [busy].[Accounts] (
+    [Id] nvarchar(450) NOT NULL,
+    [Email] nvarchar(max) NOT NULL,
+    [LastActiveUserId] nvarchar(max) NOT NULL,
+    [FirstName] nvarchar(max) NOT NULL,
+    [LastName] nvarchar(max) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Accounts] PRIMARY KEY ([Id])
+);
+GO
+
+CREATE TABLE [busy].[HourEntrys] (
+    [Id] nvarchar(450) NOT NULL,
+    [UserId] nvarchar(max) NOT NULL,
+    [ProjectId] nvarchar(max) NOT NULL,
+    [TagId] nvarchar(max) NOT NULL,
+    [StartTime] nvarchar(max) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_HourEntrys] PRIMARY KEY ([Id])
+);
+GO
+
+CREATE TABLE [busy].[Projects] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Projects] PRIMARY KEY ([Id])
+);
+GO
+
+CREATE TABLE [busy].[Tags] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    [Type] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Tags] PRIMARY KEY ([Id])
+);
+GO
+
+CREATE TABLE [busy].[Users] (
+    [Id] nvarchar(450) NOT NULL,
+    [DisplayName] nvarchar(max) NOT NULL,
+    [WorkspaceId] nvarchar(max) NOT NULL,
+    [AccountId] nvarchar(max) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
+);
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20220211140355_initial', N'6.0.2');
+GO
+
+COMMIT;
+GO
+
