@@ -10,12 +10,17 @@ namespace FactoryPattern.Banks
     {
         public override void PerformEtl()
         {
+            Console.WriteLine("Customer info migration is staring!");
             /* some precess here */
-            Console.WriteLine("Customer migration is done!");
-            /* some precess here */
-            Console.WriteLine("Account migration is done!");
-            /* some precess here */
-            Console.WriteLine("Transaction migration is done!");
+            Console.WriteLine("Customer info migration is done!");
+
+            Console.WriteLine("Account info migration is staring!");
+            /*some precess here */
+            Console.WriteLine("Account info migration is done!");
+
+            Console.WriteLine("Transaction info migration is staring!");
+            /*some precess here */
+            Console.WriteLine("Transaction info migration is done!");
         }
     }
 }

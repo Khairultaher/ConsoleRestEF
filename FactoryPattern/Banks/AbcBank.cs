@@ -10,8 +10,9 @@ namespace FactoryPattern.Banks
     {
         public override void PerformEtl()
         {
+            Console.WriteLine("Customer info migration is starting!");
             /*some precess here */
-            Console.WriteLine("Customer migration is done!");
+            Console.WriteLine("Customer info migration is done!");
         }
     }
 
